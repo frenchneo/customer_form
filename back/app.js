@@ -36,9 +36,10 @@ app.use((_req, res, next) => {
 // *************************************************
 
 const helloRoute = require("./src/routes/hello");
-
+const internautesRoute = require("./src/routes/internautes");
 var apiSlug = "/api/v1";
 
 app.use(apiSlug + "/hello", helloRoute);
+app.use(apiSlug + "/internautes", internautesRoute);
 
 module.exports = app;

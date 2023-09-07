@@ -1,10 +1,10 @@
 import { Route, Routes } from "react-router-dom";
-import HelloPage from "./pages/hello";
+import InternautesFormPage from "./pages/internautesFormPage";
 
 function App() {
   return (
     <Routes>
-      <Route path="" element={<HelloPage />} />
+      <Route path="" element={<InternautesFormPage />} />
     </Routes>
   );
 }

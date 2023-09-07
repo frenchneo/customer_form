@@ -14,3 +14,14 @@ model Hello {
   id   Int    @id @default(autoincrement())
   name String
 }
+
+model internautes {
+  id     Int     @id @default(autoincrement())
+  nom    String
+  prenom String
+  dob    String
+  photo  String? @db.Text()
+  tel    String? @unique
+  adress String?
+  email  String  @unique
+}

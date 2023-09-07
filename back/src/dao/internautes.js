@@ -2,9 +2,9 @@ const { PrismaClient } = require("@prisma/client");
 
 const prisma = new PrismaClient();
 
-class HelloDao {
-  async sayHello() {
-    const hello = await prisma.hello
+class InternautesDao {
+  async getInternautes() {
+    const internautes = await prisma.internautes
       .findMany()
       .then((res) => {
         prisma.$disconnect();
@@ -13,15 +13,13 @@ class HelloDao {
       .catch((err) => {
         throw err;
       });
-    return hello;
+    return internautes;
   }
 
-  async createHello(name) {
-    const create = await prisma.hello
+  async createInternautes(data) {
+    const create = await prisma.internautes
       .create({
-        data: {
-          name,
-        },
+        data,
       })
       .then((res) => {
         prisma.$disconnect();
@@ -33,5 +31,4 @@ class HelloDao {
     return create;
   }
 }
-
-module.exports = new HelloDao();
+module.exports = new InternautesDao();
