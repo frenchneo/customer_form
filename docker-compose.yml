@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  mysql:
+    build:
+      context: ./mysql
+    ports:
+      - "3306:3306"
+  back:
+    build:
+      context: ./back
+    environment:
+      - NODE_ENV=production
+    ports:
+      - "3000:3000"
+
+  front:
+    build:
+      context: ./front
+    ports:
+      - "80:80"
