@@ -17,4 +17,10 @@ router.post("/", (req, res) => {
   });
 });
 
+router.delete("/:id", (req, res) => {
+  InternautesController.deleteById(req.params.id, (code, rows) => {
+    responses.send(res, code, rows);
+  });
+});
+
 module.exports = router;

@@ -30,5 +30,22 @@ class InternautesDao {
       });
     return create;
   }
+
+  async deleteById(id) {
+    const deleted = await prisma.internautes
+      .delete({
+        where: {
+          id: +id,
+        },
+      })
+      .then((res) => {
+        prisma.$disconnect();
+        return res;
+      })
+      .catch((err) => {
+        throw err;
+      });
+    return deleted;
+  }
 }
 module.exports = new InternautesDao();

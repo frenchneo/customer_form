@@ -9,6 +9,11 @@ class InternautesService {
     const internautes = await InternautesDao.createInternautes(data);
     return internautes;
   }
+
+  async deleteById(id) {
+    const internautes = await InternautesDao.deleteById(id);
+    return internautes;
+  }
 }
 
 module.exports = new InternautesService();
