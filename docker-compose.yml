@@ -4,8 +4,18 @@ services:
   mysql:
     build:
       context: ./mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=Password$13
+      - MYSQL_DATABASE=customerform
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=Password$13
     ports:
-      - "3306:3306"
+      - "3307:3306"
+    networks:
+      - fullstack-network
+    volumes:
+      - mysql-data:/var/lib/mysql
+
   back:
     build:
       context: ./back
@@ -13,9 +23,24 @@ services:
       - NODE_ENV=production
     ports:
       - "3000:3000"
+    networks:
+      - fullstack-network
+    depends_on:
+      - mysql
+    command: >
+      sh -c "./wait-for-it.sh mysql:3306 -- npx prisma migrate dev --name init && npm start"
 
   front:
     build:
       context: ./front
     ports:
-      - "80:80"
+      - "8080:3000"
+    networks:
+      - fullstack-network
+  
+networks:
+  fullstack-network:
+    driver: bridge
+volumes:
+  mysql-data:
+    driver: local
